@@ -76,7 +76,6 @@ class Student:
 			return True
 	#end setters
 
-	'''
 	#associates a day with a student, won't allow days with the same name
 	#prevents things that are not a 'Day' type from being added. Returns
 	#true or false if insert is successful
@@ -174,7 +173,7 @@ class Student:
 	#compares two instances of Student based on their email address
 	#this returns true when both have the same email
 	def __eq__(self,other):
-		if self.__email != other.__email:
+		if (self.__email != other.__email) or (self.__name != other.__name) or (self.__filters != other.__filters):
 			return False
 
 		return True
@@ -189,8 +188,7 @@ class Student:
 		#	output += " " + self.__langprefs[i]
 
 		return output
-		
-'''
+'''		
 #tests the class, only runs when this module is main
 def test_student():
 	s = Student("Jared Paeschke","mahananaka@gmail.com")
@@ -209,3 +207,4 @@ def test_student():
 
 if __name__ == "__main__":
 	test_student()
+'''
