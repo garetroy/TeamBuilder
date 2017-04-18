@@ -131,6 +131,7 @@ class Team:
 		return output[:-1]
 
 #tester function the Team class, only runs when this module is main
+'''
 def test_team():
 
 	s1 = Student("Jared Paeschke","mahananaka@gmail.com")
@@ -146,3 +147,4 @@ def test_team():
 
 if __name__ == "__main__":
 	test_team()
+'''
