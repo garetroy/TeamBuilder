@@ -104,12 +104,11 @@ class AlgorithmManager():
         return total
 
     def swapMembers(self,teams):
-        return 0
+        return teams
 
     def deviation(self,teams):
         max_idx = 0
         min_idx = 0
-
         for i in range(len(teams)):
             if teams[i].getRating() > teams[max_idx].getRating():
                 max_idx = i
@@ -125,17 +124,18 @@ class AlgorithmManager():
         for _ in range(self.k):
             grouping_list.append(self.initTeamSet(students))
 
+
         for _ in range(self.d):
+            variants = []
             for _ in range(self.k):
                 teams = grouping_list.pop()
-                variants = []
                 for _ in range(self.n):
                     variants.append(self.swapMembers(teams))
 
                 min_dev = 100
                 min_idx = 0
-                for m in range(0):
-                    dev = self.deviation(teams[m])
+                for m in range(self.n):
+                    dev = self.deviation(variants[m]) 
                     
                     if dev < min_dev:
                         min_dev = dev
