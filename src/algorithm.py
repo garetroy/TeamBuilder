@@ -97,6 +97,9 @@ class AlgorithmManager():
     
             @param:
                 student1, student2 (Student) - Student
+            
+            @returns:
+                total (int) - the rating of two students
         '''
         total = 0
         for f in student1.getPrefs():
@@ -104,9 +107,47 @@ class AlgorithmManager():
         return total
 
     def swapMembers(self,teams):
+        '''
+            Swaps members within teams and re-calculates ratings
+
+            @param:
+                teams: [Team] - a list of teams
+            
+            @returns:
+                teams: [Team] - swapped teams
+        '''
+        size = len(teams)
+
+        if(size == 1):
+            return teams
+
+        for i in range(size):
+            swp_idx = i
+            while swp_idx == i:
+                swp_idx = randrange(size)
+                print(str(swp_idx) + " " + str(i))
+                
+            s1 = teams[i].getMemberList().pop()
+            s2 = teams[swp_idx].getMemberList().pop()
+
+            teams[i].insertStudent(s2)
+            teams[swp_idx].insertStudent(s1)
+
+            self.weightCalc(teams[i])
+            self.weightCalc(teams[swp_idx])
+
         return teams
 
     def deviation(self,teams):
+        '''
+            Finds the deviation for each of the teams
+
+            @params:
+                teams: [Team]
+            
+            @returns:
+                dev (int) - Deviation of list
+        '''
         max_idx = 0
         min_idx = 0
         for i in range(len(teams)):
@@ -119,6 +160,13 @@ class AlgorithmManager():
         return dev
 
     def runMain(self,students):
+        '''
+            Creates k different sets of teams, then finds the teams and swaps them around
+            until we get an "evened" out team set
+        
+            @params:
+                students [Student] - a list of all the students
+        '''
         grouping_list = []
 
         for _ in range(self.k):
